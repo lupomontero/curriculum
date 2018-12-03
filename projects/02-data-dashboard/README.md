@@ -453,6 +453,20 @@ cuando lo completes:
 |--------------------------|
 | Completitud |
 
+### Habilidades Blandas
+
+| Habilidad |
+|-----------|
+| Planificación y organización |
+| Autoaprendizaje |
+| Solución de problemas |
+| Dar y recibir feedback |
+| Adaptabilidad |
+| Trabajo en equipo |
+| Responsabilidad |
+| Comunicación eficaz |
+| Presentaciones |
+
 ### Tech
 
 | Habilidad |
@@ -488,19 +502,6 @@ cuando lo completes:
 | Jerarquía |
 | Tipografía |
 | Color |
-
-### Habilidades Blandas
-
-| Habilidad |
-|-----------|
-| Planificación y organización |
-| Autoaprendizaje |
-| Solución de problemas |
-| Dar y recibir feedback |
-| Adaptabilidad |
-| Trabajo en equipo |
-| Comunicación eficaz |
-| Presentaciones |
 
 ***
 
