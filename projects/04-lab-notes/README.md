@@ -5,21 +5,21 @@
 * [1. Preámbulo](#1-preámbulo)
 * [2. Resumen del Proyecto](#2-resumen-del-proyecto)
 * [3. Objetivos de Aprendizaje](#3-objetivos-de-aprendizaje)
-* [4. Consideraciones](#4-consideraciones)
-* [5. Criterios de aceptación del proyecto](#5-Criterios-de-aceptación-del-proyecto)
-* [Hacker Edition](#hacker-edition)
-* [ Pistas / Tips](#Pistas-/-Tips)
+* [4. Consideraciones generales](#4-consideraciones-generales)
+* [5. Criterios de aceptación mínimos del proyecto](#5-criterios-de-aceptación-mínimos-del-proyecto)
+* [6. Hacker Edition](#6-hacker-edition)
+* [7. Pistas, tips y lecturas complementarias](#7-pistas-tips-y-lecturas-complementarias)
 
 ***
 
 ## 1. Preámbulo
-Hoy en día no es práctico imaginar el desarrollo web sin HTML, CSS y JavaScript, esta última es el alma del desarrollo Frontend de aplicaciones web.
+Hoy en día no es práctico imaginar el desarrollo web sin HTML, CSS y JavaScript, esta última es el alma del desarrollo de aplicaciones web.
 [React](https://reactjs.org/), [Angular](https://angular.io/) y [Vue](https://vuejs.org/)
-son algunos de los _Frameworks_ y _Librerías_ de JavaScript más utilizados por
+son algunos de los _frameworks_ y _librerías_ de JavaScript más utilizados por
 lxs desarrolladorxs alrededor del mundo, y hay una razón para eso.
 En el contexto del navegador, [_mantener la interfaz sincronizada con el estado
 es difícil_](https://medium.com/dailyjs/the-deepest-reason-why-modern-javascript-frameworks-exist-933b86ebc445).
-Al elegir un _Framework_ o _Librería_ para nuestra interfaz, nos apoyamos en una
+Al elegir un _framework_ o _librería_ para nuestra interfaz, nos apoyamos en una
 serie de convenciones e implementaciones _probadas_ y _documentadas_ para
 resolver un problema común a toda interfaz web. Esto nos permite concentrarnos
 mejor (dedicar más tiempo) en las características _específicas_ de
@@ -30,7 +30,7 @@ código para reusarlo (lo cual es un gran valor per se), si no que adoptamos una
 **arquitectura**, una serie de **principios de diseño**, un **paradigma**, unas
 **abstracciones**, un **vocabulario**, una **comunidad**, etc.
 
-Como desarrolladora Frontend, estos kits de desarrollo pueden resultarte
+Como desarrolladora front-end, estos kits de desarrollo pueden resultarte
 de gran ayuda para implementar rápidamente características de los proyectos en
 los que trabajes.
 
@@ -44,13 +44,13 @@ utilizamos libretas o agendas que terminan siendo olvidadas, o anotamos de maner
 Hoy en día las personas contamos con algún dispositivo móvil o
 laptop y además nos estamos preocupando por implementar acciones para
 salvar el medio ambiente, además el uso de notas en el trabajo remoto se vuelve indispensable para aquello que debemos apuntar en el día con día, por ello a una Laboratorian se le ocurre la idea de
-tener una herramienta en una web app para tomar notas, que nos permita crear, editar,
+implementar una web app para tomar notas, que nos permita crear, editar,
 eliminar y consultar las notas en cualquier momento.
 
 Ella está enamorada de la idea y quiere llevarla a cabo, pero no tiene el tiempo
 necesario para empezar el proyecto, planea que sea un proyecto independiente a
 su trabajo, por ello está buscando algunas colaboradoras dentro de la comunidad
-de Laboratoria para desarrollar la idea, por lo cual te invitamos a colaborar.
+de Laboratoria para implementar la idea, por lo cual te invitamos a colaborar.
 
 ![Shows CRUD functionalities](https://raw.githubusercontent.com/florenciasilva/lab-notes/master/demo-crud.gif?token=AGJBHNTVAQRWOVF2IGMP6FK5NVFAS)
 
@@ -62,14 +62,14 @@ funcionalidades básicas:
 * Autenticación con correo y/o Google y/o Facebook.
 * Cerrar sesión.
 * Crear una nueva nota.
-* Cada usuarix deberá ver sus propias notas.
+* Ver mis notas.
 * Editar mis notas.
 * Borrar mis notas.
 
 Para este proyecto tendrás que manejar `vistas`. Esto significa que cada sección
 tendrá su propia URL, la cual indica que `vista` o `componente` será mostrado en
-pantalla. Para ello necesitaremos investigar acerca de `Router o Los módulos del sistema de rutas (en el Framework que tu elijas) ` y el
-concepto de `Single Page Application` además deberás seguir las recomendaciones para `PWAs (Progressive Web Apps)`.
+pantalla. Para ello necesitaremos investigar acerca de `la API para el manejo de rutas (en la librería o framework que elijas) ` y el
+concepto de `Single Page Application`.
 
 ### Archivos del proyecto
 
@@ -79,20 +79,18 @@ aunque no serán los únicos archivos que quizás tendrás que crear.
 * `README.md` es donde se encontrará la descripción del proyecto y elementos
   relevantes de tu proyecto.
 
-* `.gitignore`  este archivo contiene reglas para ignorar `/node_modules` u otras
+* `.gitignore`  este archivo contiene reglas para ignorar `node_modules` u otras
   carpetas que no deban incluirse en control de versiones (`git`).
-* `.eslintrc` este archivo contiene reglas para formatear el código además de ser una buena practica tener configurado un Linting.
+* `.eslintrc` este archivo contiene reglas para formatear el código además de ser una buena practica tener configurado un linter.
 
 ## 3. Objetivo de Aprendizaje
 
-El objetivo principal de es aprender a construir una _interfaz web_ usando
-   el _Framework_ elegido. Todos estos Frameworks de
+   El objetivo principal de es aprender a construir una _interfaz web_ usando
+   el _framework_ elegido. Todos estos frameworks de
    Frontend atacan el mismo problema: **cómo mantener la interfaz y el estado
    sincronizados**. Así que esta experiencia espera familiarizarte con el concepto
    de _estado de pantalla_, y cómo cada cambio sobre el estado se va a
-   ir reflejando en la interfaz o DOM (por ejemplo, cada vez que agregamos un _producto_
-   a un _pedido_, la interfaz debe actualizar la lista del pedido y el total).
-(por ejemplo, cada vez que agregamos una _nota_, la
+   ir reflejando en la interfaz (por ejemplo, cada vez que agregamos una _nota_, la
 interfaz debe actualizar la lista de notas).
 
 ![Framewoks-img](https://miro.medium.com/max/700/1*paPkmhDhXifPg-64om52og.jpeg)
@@ -101,13 +99,12 @@ interfaz debe actualizar la lista de notas).
 
 - [ ] HTML semántico
 - [ ] CSS flexbox
-- [ ] Sass
 - [ ] Maquetación
 
 ### Frontend Development
 
 - [ ] Componentes
-- [ ] Manejo del estado
+- [ ] Manejo de estado
 ### React
 
 * [ ] ¿Qué es React?
@@ -171,7 +168,7 @@ interfaz debe actualizar la lista de notas).
 * [ ] Nomenclatura / Semántica
 * [ ] Linting
 
-## 4. Consideraciones
+## 4. Consideraciones generales
 
 - Este proyecto se debe "resolver" de forma individual.
 
@@ -184,7 +181,7 @@ interfaz debe actualizar la lista de notas).
 una _tablet_, pero **no debe ser una app nativa**, sino una web app que sea
 **responsive** y pueda funcionar **offline**.
 
-- Necesitamos pensar bien en el aspecto UX (podría adaptarse al contexto remoto) de quienes van a tomar las notas, el
+- Necesitamos pensar bien en el aspecto UX de quienes van a tomar las notas, el
 tamaño y aspecto de los botones, la visibilidad del estado actual del pedido,
 etc.
 
@@ -193,7 +190,7 @@ etc.
 
 
 
-## 5. Criterios de aceptación del proyecto
+## 5. Criterios de aceptación mínimos del proyecto
 
 ### Definición del producto
 
@@ -229,7 +226,7 @@ Lo acordado que debe ocurrir para decir que la historia está terminada.
 ---
 
 
-## Hacker Edition
+## 6. Hacker Edition
 
 Una vez que hayas terminado las funcionalidades base del proyecto, puedes
 pasarte a esta sección.
@@ -247,7 +244,7 @@ pasarte a esta sección.
 
 
 
-## Pistas / Tips
+## 7. Pistas, tips y lecturas complementarias
 
 ### Frameworks / libraries
 
@@ -281,7 +278,6 @@ pasarte a esta sección.
 - [Cloud functions - Firebase Docs](https://firebase.google.com/docs/functions/?hl=es-419)
 
 ### Otros recursos
-- [Angular vs React vs Vue](https://medium.com/somoswigou/angular-vs-react-vs-vue-cual-es-la-mejor-opción-941a207951c7)
 - [create-react-app](https://create-react-app.dev/docs/getting-started)
 - [npm-scripts](https://docs.npmjs.com/misc/scripts)
 - [deploy con gh-pages](https://medium.com/the-andela-way/how-to-deploy-your-react-application-to-github-pages-in-less-than-5-minutes-8c5f665a2d2a)
