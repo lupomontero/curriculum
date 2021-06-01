@@ -6,12 +6,17 @@
     "mdlint": "mdlint .",
     "eslint": "eslint topics/",
     "pretest": "npm run mdlint && npm run eslint && npm run validate",
-    "test": "mocha './topics/!(node_modules)/**/*.spec.js' --verbose",
+    "test:topics": "mocha './topics/!(node_modules)/**/*.spec.js' --verbose",
     "validate": "./scripts/build.js --validate",
-    "build": "./scripts/build.js",
+    "build:content": "./scripts/build-content.js",
+    "build:legacy": "./scripts/build.js",
     "deploy": "./scripts/deploy.js",
     "changelog": "git log $(git describe --tags --abbrev=0)..HEAD --oneline --format=\"* %h %s (%an)\"",
-    "create-cohort-project": "./scripts/create-cohort-project.js"
+    "create-cohort-project": "./scripts/create-cohort-project.js",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "repository": "Laboratoria/bootcamp",
   "keywords": [
@@ -26,6 +31,19 @@
   "license": "CC-BY-SA-4.0",
   "bugs": {
     "url": "https://github.com/Laboratoria/bootcamp/issues"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.11.4",
+    "@material-ui/icons": "^4.11.2",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-intl": "^5.18.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.3",
+    "web-vitals": "^1.0.1"
   },
   "devDependencies": {
     "@laboratoria/curriculum-parser": "^3.0.0",
@@ -47,5 +65,23 @@
   },
   "engines": {
     "node": ">=12.x"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

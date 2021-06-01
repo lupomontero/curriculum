@@ -24,6 +24,7 @@ const parse = ({ type, id, locale, track }) => new Promise((resolve) => {
     `${type}s/${id}`,
     '--repo', repository,
     '--version', version,
+    '--rubric', rubricVersion,
     '--track', track,
     '--locale', locale,
     '--lo', path.join(__dirname, '../learning-objectives'),
