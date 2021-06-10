@@ -13,7 +13,7 @@ const Topics = () => {
     };
   }, []);
 
-  console.log(topics);
+  // console.log(topics);
 
   return (
     <div>

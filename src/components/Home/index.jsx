@@ -1,31 +1,37 @@
 import { useEffect, useState } from 'react';
 import data from '../../lib/data';
+import Loading from '../Loading';
+import Projects from './Projects';
 
 const Home = () => {
+  const [tracks, setTracks] = useState();
   const [learningObjectives, setLearningObjectives] = useState();
   const [projects, setProjects] = useState();
   const [topics, setTopics] = useState();
 
-  // Subscribe to learning-objectives, projects and topics
   useEffect(() => {
+    data.subscribe('tracks', setTracks);
     data.subscribe('learning-objectives', setLearningObjectives);
     data.subscribe('projects', setProjects);
     data.subscribe('topics', setTopics);
 
     return () => {
+      data.unsubscribe('tracks', setTracks);
       data.unsubscribe('learning-objectives', setLearningObjectives);
       data.unsubscribe('projects', setProjects);
       data.unsubscribe('topics', setTopics);
     };
   }, []);
 
-  console.log(learningObjectives);
-  console.log(projects);
-  console.log(topics);
+  if (!tracks || !learningObjectives || !projects || !topics) {
+    return <Loading />;
+  }
+
+  console.log(tracks);
 
   return (
     <div>
-      Home
+      <Projects projects={projects} />
     </div>
   )
 };

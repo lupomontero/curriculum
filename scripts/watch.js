@@ -88,7 +88,7 @@ const main = () => {
 
     jobs[jobId].on('parse', (data) => {
       sockets.forEach((ws) => {
-        ws.send(JSON.stringify({ type, data }));
+        ws.send(JSON.stringify({ path: `${type}s/${data.slug}`, data }));
       });
       jobs[jobId] = undefined;
     });
@@ -106,7 +106,6 @@ const main = () => {
     const parts = path.split('/');
     const type = parts[0].slice(0, -1);
     const dir = parts[1];
-    const fname = parts[parts.length - 1];
 
     if (!path.startsWith('projects/') && !path.startsWith('topics/')) {
       return;
@@ -114,9 +113,9 @@ const main = () => {
 
     log(`Change detected in file ${path}`);
     const locales = (
-      fname.endsWith('.pt-BR.md')
+      path.endsWith('.pt-BR.md')
         ? ['pt-BR']
-        : fname.endsWith('.md')
+        : path.endsWith('.md')
           ? ['es-ES']
           : ['es-ES', 'pt-BR']
     );

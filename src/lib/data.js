@@ -1,35 +1,29 @@
-const data = {};
+import tracks from './tracks';
+
+
 const listeners = {};
+const data = { tracks };
 
 
-const watch = () => {
-  const ws = new WebSocket('ws://127.0.0.1:8080/');
+const notify = (path) => {
+  const [coll, slug] = path.split('/');
 
-  const onError = (ev) => {
-    console.error('error', ev);
-  };
+  (listeners[path] || []).forEach(fn => fn(data[path]));
 
-  const onOpen = (ev) => {
-    console.log('open', ev);
-    // ws.send(JSON.stringify({ ok: true }));
-  };
+  if (slug) {
+    (listeners[coll] || []).forEach(fn => fn(data[coll]));
+  }
+};
 
-  const onClose = (ev) => {
-    console.log('close', ev);
-  };
 
-  const onMessage = (ev) => {
-    const { type, data } = JSON.parse(ev.data);
-    console.log('message', type, data);
-    // if (['init', 'change'].includes(eventName)) {
-    //   setState(data);
-    // }
-  };
+const updateData = (path, val) => {
+  const [coll, slug] = path.split('/');
 
-  ws.addEventListener('error', onError);
-  ws.addEventListener('open', onOpen);
-  ws.addEventListener('close', onClose);
-  ws.addEventListener('message', onMessage);
+  data[path] = val;
+
+  if (slug && data[coll]) {
+    data[coll] = data[coll].filter(item => item.slug !== slug).concat(val);
+  }
 };
 
 
@@ -47,7 +41,7 @@ export const subscribe = (path, callback) => {
       .then(resp => resp.json())
       .catch(err => err)
       .then((json) => {
-        data[path] = json;
+        updateData(path, json);
         callback(json);
       });
   }
@@ -62,6 +56,30 @@ export const subscribe = (path, callback) => {
 };
 
 
+const watch = () => {
+  const ws = new WebSocket('ws://127.0.0.1:8080/');
+
+  const onError = (ev) => {
+    console.error('WebSocket error', ev);
+  };
+
+  const onClose = (ev) => {
+    console.log('WebSocket closed', ev);
+  };
+
+  const onMessage = (ev) => {
+    const { path, data: value } = JSON.parse(ev.data);
+    updateData(path, value);
+    notify(path);
+  };
+
+  ws.addEventListener('error', onError);
+  ws.addEventListener('close', onClose);
+  ws.addEventListener('message', onMessage);
+};
+
+
+// If in dev env, we start watching for changes in projects and topics
 if (process.env.NODE_ENV === 'development') {
   watch();
 }
