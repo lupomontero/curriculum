@@ -7,6 +7,7 @@ import './App.css';
 
 // Dynamic lazy imports for code splitting based on routes.
 const Home = lazy(() => import('../Home'));
+const Topics = lazy(() => import('../Topics'));
 // const SignIn = lazy(() => import('../SignIn'));
 const TopBar = lazy(() => import('../TopBar'));
 
@@ -24,6 +25,9 @@ const App = () => {
         <div className="App">
           <TopBar />
           <Switch>
+            <Route path="/topics">
+              <Topics />
+            </Route>
             <Route path="/">
               <Home />
             </Route>

@@ -56,7 +56,7 @@ const TopBar = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            Bootcamp Admin
+            Laboratoria Bootcamp
           </Typography>
         </Toolbar>
       </AppBar>
