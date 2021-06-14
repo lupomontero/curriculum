@@ -12,7 +12,8 @@
     "deploy": "./scripts/deploy.js",
     "changelog": "git log $(git describe --tags --abbrev=0)..HEAD --oneline --format=\"* %h %s (%an)\"",
     "create-cohort-project": "./scripts/create-cohort-project.js",
-    "start": "concurrently ./scripts/watch.js \"react-scripts start\"",
+    "watch": "concurrently ./scripts/watch.js \"react-scripts start\"",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -37,6 +38,8 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^13.1.9",
+    "firebase": "^8.6.7",
+    "highlight.js": "^11.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-intl": "^5.18.1",

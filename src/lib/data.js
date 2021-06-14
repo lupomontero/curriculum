@@ -1,8 +1,5 @@
-import tracks from './tracks';
-
-
 const listeners = {};
-const data = { tracks };
+const data = {};
 
 
 const notify = (path) => {
@@ -84,5 +81,5 @@ if (process.env.NODE_ENV === 'development') {
   watch();
 }
 
-
+// eslint-disable-next-line
 export default { subscribe, unsubscribe };

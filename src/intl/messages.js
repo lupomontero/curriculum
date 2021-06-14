@@ -1,7 +1,9 @@
 import es from './es';
 import pt from './pt';
 
-export default {
+const messages = {
   'es-ES': es,
   'pt-BR': pt,
 };
+
+export default messages;

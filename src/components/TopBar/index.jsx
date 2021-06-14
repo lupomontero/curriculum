@@ -1,24 +1,18 @@
 import { Fragment, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { FormattedMessage, useIntl } from 'react-intl';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
-import Divider from '@material-ui/core/Divider';
-import Drawer from '@material-ui/core/Drawer';
+import FormControl from '@material-ui/core/FormControl';
 import IconButton from '@material-ui/core/IconButton';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import MenuIcon from '@material-ui/icons/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import HomeIcon from '@material-ui/icons/Home';
-import LockOpenIcon from '@material-ui/icons/LockOpen';
-import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
-import PeopleIcon from '@material-ui/icons/People';
-import WorkIcon from '@material-ui/icons/Work';
-// import { useApp } from '../../lib/app';
+import MenuIcon from '@material-ui/icons/Menu';
+import { useApp } from '../../lib/app';
+import { useLocale } from '../../intl/IntlProvider';
+import DrawerMenu from './DrawerMenu';
+import UserMenu from './UserMenu';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,12 +28,26 @@ const useStyles = makeStyles((theme) => ({
   list: {
     width: 250,
   },
+  langSelect: {
+    marginRight: theme.spacing(1),
+  },
+  hideWhenNotSmall: {
+    [theme.breakpoints.up('sm')]: {
+      display: 'none',
+    },
+  },
+  hideWhenSmall: {
+    [theme.breakpoints.down('xs')]: {
+      display: 'none',
+    },
+  },
 }));
 
 const TopBar = () => {
   const history = useHistory();
   const classes = useStyles();
-  // const { auth } = useApp();
+  const { auth } = useApp();
+  const { locale, setLocale } = useLocale();
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
 
   return (
@@ -56,45 +64,40 @@ const TopBar = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            Laboratoria Bootcamp
+            &lt;L<span className={classes.hideWhenSmall}>aboratoria</span>&gt;
+            <span className={classes.hideWhenSmall}>Bootcamp</span>
           </Typography>
+          <FormControl className={classes.langSelect}>
+            <Select
+              labelId="lang-select-label"
+              id="lang-select"
+              displayEmpty
+              value={locale}
+              onChange={e => setLocale(e.target.value)}
+            >
+              <MenuItem value="" disabled>Lang</MenuItem>
+              <MenuItem value={'es-ES'}>
+                <span className={classes.hideWhenNotSmall}>ES</span>
+                <span className={classes.hideWhenSmall}>Español</span>
+              </MenuItem>
+              <MenuItem value={'pt-BR'}>
+                <span className={classes.hideWhenNotSmall}>PT</span>
+                <span className={classes.hideWhenSmall}>Português</span>
+              </MenuItem>
+            </Select>
+          </FormControl>
+          <UserMenu auth={auth} history={history} />
         </Toolbar>
       </AppBar>
 
       <div className={classes.offset} />
 
-      <Drawer
-        anchor="left"
-        open={drawerIsOpen}
-        onClick={() => setDrawerIsOpen(false)}
-      >
-        <div className={classes.list}>
-          <List>
-            <ListItem button onClick={() => history.push('/')}>
-              <ListItemIcon><HomeIcon /></ListItemIcon>
-              <ListItemText primary="Home" />
-            </ListItem>
-          </List>
-          <Divider />
-          <List>
-            <ListItem button onClick={() => history.push('/projects')}>
-              <ListItemIcon><PeopleIcon /></ListItemIcon>
-              <ListItemText primary={<FormattedMessage id="projects" />} />
-            </ListItem>
-            <ListItem button onClick={() => history.push('/topics')}>
-              <ListItemIcon><MonetizationOnIcon /></ListItemIcon>
-              <ListItemText primary={<FormattedMessage id="topics" />} />
-            </ListItem>
-          </List>
-          <Divider />
-          <List>
-            <ListItem button onClick={() => console.log('sign out!')}>
-              <ListItemIcon><LockOpenIcon /></ListItemIcon>
-              <ListItemText primary="Sign out" />
-            </ListItem>
-          </List>
-        </div>
-      </Drawer>
+      <DrawerMenu
+        drawerIsOpen={drawerIsOpen}
+        setDrawerIsOpen={setDrawerIsOpen}
+        history={history}
+        auth={auth}
+      />
     </Fragment>
   );
 };
