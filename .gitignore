@@ -26,6 +26,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+.firebase/
+
+
 #documents extensions
 **.[pP][dD][fF]
 **.[dD][oO][cC]

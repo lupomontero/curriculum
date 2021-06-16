@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
 import data from '../../lib/data';
 import Loading from '../Loading';
 import Projects from './Projects';
@@ -28,10 +31,13 @@ const Track = () => {
   }
 
   return (
-    <div>
+    <Container>
+      <Typography variant="h1">
+        <FormattedMessage id={track === 'js' ? 'webDev' : 'ux'} />
+      </Typography>
       <Projects projects={projects} track={track} />
       <Topics topics={topics} track={track} />
-    </div>
+    </Container>
   )
 };
 

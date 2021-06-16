@@ -1,5 +1,5 @@
 import { Fragment, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import FormControl from '@material-ui/core/FormControl';
@@ -10,9 +10,10 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
 import { useApp } from '../../lib/app';
-import { useLocale } from '../../intl/IntlProvider';
 import DrawerMenu from './DrawerMenu';
 import UserMenu from './UserMenu';
+import laboratoriaLogo from '../../icons/laboratoria-logo.svg';
+import laboratoriaIcon from '../../icons/laboratoria-isotipo.svg';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,20 +24,25 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    display: 'flex',
   },
   offset: theme.mixins.toolbar,
   list: {
-    width: 250,
+    width: 280,
   },
   langSelect: {
     marginRight: theme.spacing(1),
   },
   hideWhenNotSmall: {
+    display: 'flex',
+    alignItems: 'center',
     [theme.breakpoints.up('sm')]: {
       display: 'none',
     },
   },
   hideWhenSmall: {
+    display: 'flex',
+    alignItems: 'center',
     [theme.breakpoints.down('xs')]: {
       display: 'none',
     },
@@ -46,13 +52,14 @@ const useStyles = makeStyles((theme) => ({
 const TopBar = () => {
   const history = useHistory();
   const classes = useStyles();
+  const { lang } = useParams();
   const { auth } = useApp();
-  const { locale, setLocale } = useLocale();
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
+  const urlWithoutLang = history.location.pathname.split('/').slice(2).join('/');
 
   return (
     <Fragment>
-      <AppBar>
+      <AppBar style={{ backgroundColor: 'white' }}>
         <Toolbar>
           <IconButton
             onClick={() => setDrawerIsOpen(true)}
@@ -63,30 +70,34 @@ const TopBar = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            &lt;L<span className={classes.hideWhenSmall}>aboratoria</span>&gt;
-            <span className={classes.hideWhenSmall}>Bootcamp</span>
+          <Typography variant="h7" className={classes.title}>
+            <div className={classes.hideWhenNotSmall}>
+              <img src={laboratoriaIcon} height={56} />
+            </div>
+            <div className={classes.hideWhenSmall}>
+              <img src={laboratoriaLogo} height={32} style={{ marginRight: 10 }} /> Curriculum
+            </div>
           </Typography>
           <FormControl className={classes.langSelect}>
             <Select
               labelId="lang-select-label"
               id="lang-select"
               displayEmpty
-              value={locale}
-              onChange={e => setLocale(e.target.value)}
+              value={lang}
+              onChange={e => history.push(`/${e.target.value}/${urlWithoutLang}`)}
             >
               <MenuItem value="" disabled>Lang</MenuItem>
-              <MenuItem value={'es-ES'}>
+              <MenuItem value={'es'}>
                 <span className={classes.hideWhenNotSmall}>ES</span>
                 <span className={classes.hideWhenSmall}>Español</span>
               </MenuItem>
-              <MenuItem value={'pt-BR'}>
+              <MenuItem value={'pt'}>
                 <span className={classes.hideWhenNotSmall}>PT</span>
                 <span className={classes.hideWhenSmall}>Português</span>
               </MenuItem>
             </Select>
           </FormControl>
-          <UserMenu auth={auth} history={history} />
+          <UserMenu lang={lang} auth={auth} history={history} />
         </Toolbar>
       </AppBar>
 
@@ -95,8 +106,8 @@ const TopBar = () => {
       <DrawerMenu
         drawerIsOpen={drawerIsOpen}
         setDrawerIsOpen={setDrawerIsOpen}
+        lang={lang}
         history={history}
-        auth={auth}
       />
     </Fragment>
   );

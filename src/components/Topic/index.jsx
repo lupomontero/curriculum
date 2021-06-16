@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, Route, Switch, useParams, useRouteMatch } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
 import Loading from '../Loading';
 import Part from '../Part';
 import data from '../../lib/data';
@@ -11,7 +12,7 @@ const Unit = ({ topic, url }) => {
 
   return (
     <Container>
-      <h1>{unit.title}</h1>
+      <Typography variant="h2">{unit.title}</Typography>
       {Object.keys(unit.parts).map(key => (
         <div key={key}>
           <Link to={`${url}/${params.unit}/${key}`}>
@@ -25,12 +26,19 @@ const Unit = ({ topic, url }) => {
 
 const UnitsList = ({ topic, url }) => (
   <>
-    <h1>{topic.title}</h1>
+    <Typography variant="h2">{topic.title}</Typography>
     {Object.keys(topic.syllabus).map(key => (
       <div key={key}>
         <Link to={`${url}/${key}`}>
-          {topic.syllabus[key].title}
+          <Typography variant="h3">{topic.syllabus[key].title}</Typography>
         </Link>
+        {Object.keys(topic.syllabus[key].parts).map(partKey => (
+          <div key={`${key}-${partKey}`}>
+            <Link to={`${url}/${key}/${partKey}`}>
+              {topic.syllabus[key].parts[partKey].title}
+            </Link>
+          </div>
+        ))}
       </div>
     ))}
   </>
@@ -38,18 +46,16 @@ const UnitsList = ({ topic, url }) => (
 
 const Topic = () => {
   let { path, url } = useRouteMatch();
-  console.log('path, url', path, url);
-  console.log('useParams()', useParams());
-  const { slug } = useParams();
+  const { lang, slug } = useParams();
   const [topic, setTopic] = useState();
 
   useEffect(() => {
-    data.subscribe(`topics/${slug}`, setTopic);
-
+    const id = `topics/${slug}${lang !== 'es' ? '-pt' : ''}`;
+    data.subscribe(id, setTopic);
     return () => {
-      data.unsubscribe(`topics/${slug}`, setTopic);
+      data.unsubscribe(id, setTopic);
     };
-  }, [slug]);
+  }, [lang, slug]);
 
   if (!topic) {
     return <Loading />;

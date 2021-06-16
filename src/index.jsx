@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { AppProvider } from './lib/app';
-import IntlProvider from './intl/IntlProvider';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import themeConfig from './lib/theme';
@@ -12,9 +11,7 @@ ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={createMuiTheme(themeConfig)}>
       <AppProvider>
-        <IntlProvider>
-          <App />
-        </IntlProvider>
+        <App />
       </AppProvider>
     </ThemeProvider>
   </React.StrictMode>,

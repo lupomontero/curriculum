@@ -7,16 +7,17 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
-import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
+import DeveloperModeIcon from '@material-ui/icons/DeveloperMode';
+import GitHubIcon from '@material-ui/icons/GitHub';
 import PeopleIcon from '@material-ui/icons/People';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   list: {
     width: 250,
   },
 }));
 
-const DrawerMenu = ({ drawerIsOpen, setDrawerIsOpen, history, auth }) => {
+const DrawerMenu = ({ drawerIsOpen, setDrawerIsOpen, history, lang }) => {
   const classes = useStyles();
   return (
     <Drawer
@@ -26,20 +27,24 @@ const DrawerMenu = ({ drawerIsOpen, setDrawerIsOpen, history, auth }) => {
     >
       <div className={classes.list}>
         <List>
-          <ListItem button onClick={() => history.push('/')}>
+          <ListItem button onClick={() => history.push(`/${lang}`)}>
             <ListItemIcon><HomeIcon /></ListItemIcon>
             <ListItemText primary={<FormattedMessage id="home" />} />
           </ListItem>
         </List>
         <Divider />
         <List>
-          <ListItem button onClick={() => history.push('/projects')}>
-            <ListItemIcon><PeopleIcon /></ListItemIcon>
-            <ListItemText primary={<FormattedMessage id="projects" />} />
+          <ListItem button onClick={() => history.push(`/${lang}/js`)}>
+            <ListItemIcon><DeveloperModeIcon /></ListItemIcon>
+            <ListItemText primary={<FormattedMessage id="webDev" />} />
           </ListItem>
-          <ListItem button onClick={() => history.push('/topics')}>
-            <ListItemIcon><MonetizationOnIcon /></ListItemIcon>
-            <ListItemText primary={<FormattedMessage id="topics" />} />
+          <ListItem button onClick={() => history.push(`/${lang}/ux`)}>
+            <ListItemIcon><PeopleIcon /></ListItemIcon>
+            <ListItemText primary={<FormattedMessage id="ux" />} />
+          </ListItem>
+          <ListItem button onClick={() => window.open('https://github.com/Laboratoria/bootcamp')}>
+            <ListItemIcon><GitHubIcon /></ListItemIcon>
+            <ListItemText primary="Ver en GitHub" />
           </ListItem>
         </List>
       </div>

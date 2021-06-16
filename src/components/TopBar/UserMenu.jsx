@@ -9,11 +9,15 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 
 
-const UserMenu = ({ auth, history }) => {
+const UserMenu = ({ lang, auth, history }) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
   if (!auth.user) {
-    return <Button onClick={() => history.push('/signin')}>Sign in</Button>;
+    return (
+      <Button onClick={() => history.push(`/${lang}/signin`)} color="primary" variant="contained">
+        <FormattedMessage id="signin" />
+      </Button>
+    );
   }
 
   const handleMenu = (e) => {

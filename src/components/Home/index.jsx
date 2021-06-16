@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { FormattedMessage } from 'react-intl';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -19,7 +20,10 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     justifyContent: 'center',
     textDecoration: 'none',
-    fontSize: '2em',
+    fontSize: '1.6em',
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '2em',
+    },
     fontWeight: 'bold',
   },
 }));
@@ -27,26 +31,27 @@ const useStyles = makeStyles(theme => ({
 const Home = () => {
   const theme = useTheme();
   const classes = useStyles();
+  const { lang } = useParams();
 
   return (
     <div className={classes.root}>
       <Link
-        to="/js"
+        to={`/${lang}/js`}
         className={classes.link}
         style={{
           backgroundColor: theme.palette.primary.light,
         }}
       >
-        JS
+        <FormattedMessage id="webDev" />
       </Link>
       <Link
-        to="/ux"
+        to={`/${lang}/ux`}
         className={classes.link}
         style={{
           backgroundColor: theme.palette.mint.main,
         }}
       >
-        UX
+        <FormattedMessage id="ux" />
       </Link>
     </div>
   )
