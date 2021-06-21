@@ -3,6 +3,8 @@ import { Link, Route, Switch, useParams, useRouteMatch } from 'react-router-dom'
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Loading from '../Loading';
+import Breadcrumbs from '../Breadcrumbs';
+import Exercise from '../Exercise';
 import Part from '../Part';
 import data from '../../lib/data';
 
@@ -11,7 +13,8 @@ const Unit = ({ topic, url }) => {
   const unit = topic.syllabus[params.unit];
 
   return (
-    <Container>
+    <>
+      <Breadcrumbs topic={topic} />
       <Typography variant="h2">{unit.title}</Typography>
       {Object.keys(unit.parts).map(key => (
         <div key={key}>
@@ -20,12 +23,13 @@ const Unit = ({ topic, url }) => {
           </Link>
         </div>
       ))}
-    </Container>
+    </>
   );
 };
 
 const UnitsList = ({ topic, url }) => (
   <>
+    <Breadcrumbs topic={topic} />
     <Typography variant="h2">{topic.title}</Typography>
     {Object.keys(topic.syllabus).map(key => (
       <div key={key}>
@@ -64,8 +68,11 @@ const Topic = () => {
   return (
     <Container>
       <Switch>
+        <Route path={`${path}/:unit/:part/:exerciseid`}>
+          <Exercise topic={topic} />
+        </Route>
         <Route path={`${path}/:unit/:part`}>
-          <Part topic={topic} url={url} />
+          <Part topic={topic} />
         </Route>
         <Route path={`${path}/:unit`}>
           <Unit topic={topic} url={url} />

@@ -44,7 +44,7 @@ const Project = ({ project }) => {
                     height: 16,
                     marginRight: 2,
                     backgroundColor: icon.color,
-                    // -webkit-mask: url(logo.svg) no-repeat center;
+                    WebkitMask: `url(${icon.svg}) no-repeat center`,
                     mask: `url(${icon.svg}) no-repeat center`,
                   }}
                 />

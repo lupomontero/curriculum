@@ -1,23 +1,31 @@
 import { useParams } from 'react-router-dom';
-import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import Breadcrumbs from '../Breadcrumbs';
 import Content from '../Content';
 import ExercisesList from './ExercisesList';
 import Quiz from '../Quiz';
 
-const Part = ({ topic, url }) => {
+const Part = ({ topic }) => {
   const params = useParams();
   const part = topic.syllabus[params.unit].parts[params.part];
   const exercises = Object.keys(part.exercises || {}).map(key => ({
     ...part.exercises[key],
     slug: key,
   }));
+
   return (
-    <Container>
-      <h1>{part.title}</h1>
+    <>
+      <Breadcrumbs topic={topic} />
+      <Typography variant="h1">{part.title}</Typography>
       <Content html={part.body} />
-      {!!exercises.length && <ExercisesList part={part} exercises={exercises} />}
+      {!!exercises.length && (
+        <ExercisesList
+          slug={params.part}
+          exercises={exercises}
+        />
+      )}
       {!!part.questions && <Quiz part={part} />}
-    </Container>
+    </>
   );
 };
 

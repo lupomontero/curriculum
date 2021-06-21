@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
+import Breadcrumbs from '../Breadcrumbs';
 import Loading from '../Loading';
 import data from '../../lib/data';
 
@@ -101,6 +102,7 @@ const Project = () => {
 
   return (
     <Container>
+      <Breadcrumbs project={project} />
       <Typography variant="h1">{project.title}</Typography>
 
       <p>
