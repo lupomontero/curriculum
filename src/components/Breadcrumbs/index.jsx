@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
 
 const Breadcrumbs = ({ topic, project }) => {
   const classes = useStyles();
-  const { lang, slug, unit, part } = useParams();
+  const { lang, slug, unit, part, exerciseid } = useParams();
   const track = topic ? topic.track : project.track;
 
   const links = [
@@ -51,6 +51,12 @@ const Breadcrumbs = ({ topic, project }) => {
           title: topic.syllabus[unit].parts[part].title,
           url: `/${lang}/${topic ? 'topics' : 'projects'}/${slug}/${unit}/${part}`,
         });
+        if (exerciseid) {
+          links.push({
+            title: topic.syllabus[unit].parts[part].exercises[exerciseid].title,
+            url: `/${lang}/${topic ? 'topics' : 'projects'}/${slug}/${unit}/${part}/${exerciseid}`,
+          });
+        }
       }
     }
   }

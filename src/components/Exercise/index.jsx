@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Container from '@material-ui/core/Container';
+import { FormattedMessage } from 'react-intl';
 import Button from '@material-ui/core/Button';
 import AceEditor from 'react-ace';
+import Breadcrumbs from '../Breadcrumbs';
 import Content from '../Content';
 import { slugToFilename, decodeFilenameKeys } from './util';
 import createTestRunner from './test-runner';
@@ -22,7 +23,8 @@ const Exercise = ({ topic }) => {
   const runTests = createTestRunner(files.test);
 
   return (
-    <Container>
+    <>
+      <Breadcrumbs topic={topic} />
       <h1>{exercise.title}</h1>
       <Content html={exercise.body} />
       <AceEditor
@@ -50,11 +52,11 @@ const Exercise = ({ topic }) => {
               .catch(console.error)
           }
         >
-          Run tests
+          <FormattedMessage id="exercise.runTests" />
         </Button>
       </div>
       {testResults && <TestResults results={testResults} />}
-    </Container>
+    </>
   );
 };
 
