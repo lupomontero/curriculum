@@ -76,8 +76,8 @@ const watch = () => {
 };
 
 
-// If in dev env, we start watching for changes in projects and topics
-if (process.env.NODE_ENV === 'development') {
+// If in running with watch script, we start watching for changes...
+if (process.env.REACT_APP_WATCH) {
   watch();
 }
 

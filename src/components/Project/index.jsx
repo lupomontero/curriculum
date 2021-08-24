@@ -3,9 +3,10 @@ import { Link, useParams } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
+import { useApp } from '../../lib/app';
+import data from '../../lib/data';
 import Breadcrumbs from '../Breadcrumbs';
 import Loading from '../Loading';
-import data from '../../lib/data';
 
 const ExternalLink = ({ url, title }) => (
   <a href={url} target="_blank" rel="noreferrer">
@@ -70,9 +71,12 @@ const LearningObjectiveCat = ({ lang, cat, project, learningObjectives }) => {
 };
 
 const Project = () => {
+  const { auth } = useApp();
   const { lang, slug } = useParams();
   const [project, setProject] = useState();
   const [learningObjectives, setLearningObjectives] = useState();
+
+  console.log(auth);
 
   useEffect(() => {
     const id = `projects/${slug}${lang !== 'es' ? '-pt' : ''}`;
@@ -113,6 +117,13 @@ const Project = () => {
       <p>
         Ver enunciado completo (<ExternalLink url={readmeUrl} title="README.md" />)
         y <ExternalLink url={projectUrl} title="boilerplate" /> en GitHub.
+      </p>
+
+      <p>
+        <button>Empezar</button>
+        <button>Autoevaluación</button>
+        <button>Evaluar compañera</button>
+        <button>Evaluar estudiante</button>
       </p>
 
       {!!learningObjectiveCats.length && (

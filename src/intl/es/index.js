@@ -2,6 +2,7 @@ const es = {
   home: 'Inicio',
   projects: 'Proyectos',
   topics: 'Tópicos',
+  'learning-objectives': 'Objetivos de aprendizaje',
   signin: 'Iniciar sesión',
   signout: 'Cerrar sesión',
   learningObjectives: 'Objetivos de aprendizaje',

@@ -1,12 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { initializeApp } from 'firebase/app';
-import {
-  getAuth,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  signOut
-} from 'firebase/auth';
-import createClient from './client';
+import { createAuth } from '@laboratoria/sdk-js/auth';
+import { createClient } from '@laboratoria/sdk-js/client';
 import Loading from '../components/Loading';
 
 
@@ -17,15 +11,13 @@ const {
 } = process.env;
 
 
-const AppContext = createContext();
-
-
-const firebaseApp = initializeApp({
-  apiKey: REACT_APP_FIREBASE_API_KEY,
-  authDomain: `${REACT_APP_FIREBASE_PROJECT}.firebaseapp.com`,
-  databaseURL: `https://${REACT_APP_FIREBASE_PROJECT}.firebaseio.com`,
-  projectId: REACT_APP_FIREBASE_PROJECT,
+const auth = createAuth({
+  firebaseApiKey: REACT_APP_FIREBASE_API_KEY,
+  firebaseProject: REACT_APP_FIREBASE_PROJECT,
 });
+
+
+const AppContext = createContext();
 
 
 //
@@ -37,39 +29,48 @@ export const useApp = () => useContext(AppContext);
 // App Context Provider to be wrapped around the whole App.
 //
 export const AppProvider = ({ children }) => {
-  const auth = getAuth(firebaseApp);
   const [user, setUser] = useState();
   const [profile, setProfile] = useState();
+  const [cohorts, setCohorts] = useState();
 
-  useEffect(() => onAuthStateChanged(auth, (user) => {
+  useEffect(() => auth.onChange((user) => {
     if (!user) {
       setUser(null);
       setProfile(null);
+      setCohorts(null);
       return;
     }
     setUser(user);
-  }), [auth]);
+  }), []);
 
   useEffect(() => {
     if (!user) {
       return;
     }
 
-    createClient(REACT_APP_LABORATORIA_API_URL, user)('/me')
-      .then((profile) => {
+    const client = createClient(REACT_APP_LABORATORIA_API_URL, user);
+
+    Promise.all([
+      client('/me'),
+      client(`/users/${user.uid}/cohorts`),
+    ])
+      .then(([profile, cohorts]) => {
         setProfile(profile);
+        setCohorts(cohorts);
       })
-      .catch((err) => {
-        console.error(err);
-      });
+      .catch(console.error);
   }, [user]);
 
   const app = {
     auth: {
       user,
       profile,
-      signIn: ({ email, password }) => signInWithEmailAndPassword(auth, email, password),
-      signOut: () => signOut(auth),
+      cohorts,
+      activeCohorts: cohorts?.filter(
+        ({ end, name }) => new Date(end) >= Date.now() && name !== 'coaches',
+      ),
+      signIn: credentials => auth.signIn(credentials),
+      signOut: () => auth.signOut(),
     },
     client: createClient(REACT_APP_LABORATORIA_API_URL, user),
   };
@@ -78,6 +79,9 @@ export const AppProvider = ({ children }) => {
   if (typeof user === 'undefined') {
     return <Loading />;
   }
+
+  // console.log(user);
+  // console.log(profile);
 
   return (
     <AppContext.Provider value={app}>

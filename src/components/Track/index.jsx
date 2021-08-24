@@ -17,6 +17,7 @@ import Typography from '@material-ui/core/Typography';
 import data from '../../lib/data';
 import Loading from '../Loading';
 import Gym from './Gym';
+import LearningObjectives from './LearningObjectives';
 import Projects from './Projects';
 import Topics from './Topics';
 
@@ -77,6 +78,12 @@ const Track = () => {
           to=""
         />
         <Tab
+          label={intl.formatMessage({ id: 'learning-objectives' })}
+          value={`${url}/learning-objectives`}
+          component={Link}
+          to={`${url}/learning-objectives`}
+        />
+        <Tab
           label={intl.formatMessage({ id: 'topics' })}
           value={`${pathnameBase}/topics`}
           component={Link}
@@ -95,6 +102,10 @@ const Track = () => {
         <Route
           path={`topics`}
           element={<Topics topics={topics} track={track} />}
+        />
+        <Route
+          path={`${path}/learning-objectives`}
+          render={() => <LearningObjectives learningObjectives={learningObjectives} />}
         />
         {track === 'js' && (
           <Route

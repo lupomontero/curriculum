@@ -25,7 +25,7 @@ const App = () => {
     )
   }, [auth]);
 
-  if (!defaulLocale) {
+  if (!defaulLocale || (auth.user && !auth.profile)) {
     return <Loading />;
   }
 

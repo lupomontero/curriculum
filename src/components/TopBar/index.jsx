@@ -9,9 +9,9 @@ import Select from '@material-ui/core/Select';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
-// import { useApp } from '../../lib/app';
+import { useApp } from '../../lib/app';
 import DrawerMenu from './DrawerMenu';
-// import UserMenu from './UserMenu';
+import UserMenu from './UserMenu';
 import laboratoriaLogo from '../../icons/laboratoria-logo.svg';
 import laboratoriaIcon from '../../icons/laboratoria-isotipo.svg';
 
@@ -54,7 +54,7 @@ const TopBar = () => {
   const navigate = useNavigate();
   const { lang } = useParams();
   const location = useLocation();
-  // const { auth } = useApp();
+  const { auth } = useApp();
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
   const urlWithoutLang = location.pathname.split('/').slice(2).join('/');
 
@@ -98,7 +98,7 @@ const TopBar = () => {
               </MenuItem>
             </Select>
           </FormControl>
-          {/* <UserMenu lang={lang} auth={auth} history={history} /> */}
+          <UserMenu lang={lang} auth={auth} history={history} />
         </Toolbar>
       </AppBar>
 
