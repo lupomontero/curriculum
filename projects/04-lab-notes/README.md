@@ -49,7 +49,8 @@ Hoy en día las personas contamos con algún dispositivo móvil o
 laptop y además nos estamos preocupando por implementar acciones para
 salvar el medio ambiente, además el uso de notas en el trabajo remoto se vuelve
 indispensable para aquello que debemos apuntar en el día con día, por ello a una
-Laboratorian se le ocurre la idea de tener una herramienta como una web app para tomar notas,
+Laboratorian se le ocurre la idea de tener una herramienta como
+una web app para tomar notas,
 que nos permita crear, editar, eliminar y consultar las notas en cualquier
 momento.
 
@@ -90,7 +91,7 @@ aunque no serán los únicos archivos que quizás tendrás que crear.
 * `.gitignore`  este archivo contiene reglas para ignorar `node_modules` u otras
   carpetas que no deban incluirse en control de versiones (`git`).
 * `.eslintrc` este archivo contiene reglas para formatear el código además de
-  ser una buena practica tener configurado un linter.
+ser una buena practica tener configurado un linter.
 
 ## 3. Objetivos de Aprendizaje
 
@@ -182,8 +183,8 @@ de notas).
 
 * Este proyecto se debe "resolver" de forma individual.
 
-* La duración propuesta del proyecto es 4 sprints, con una duración de una semana
-cada uno.
+* La duración propuesta del proyecto es 4 sprints, con una duración de una
+semana cada uno.
 
 * Trabaja en una historia hasta terminarla antes de pasar a la siguiente.
 
@@ -216,13 +217,15 @@ antes escribía en papel.
 
 #### [Historia de usuario 2] Usuaria/o debería poder ver las notas
 
-Yo como usuaria de lab-notes quiero leer mis notas para recordar lo que escribí antes.
+Yo como usuaria de lab-notes quiero leer mis notas para recordar lo que escribí
+antes.
 
 ***
 
 #### [Historia de usuario 3] Usuaria/o debería poder editar las notas
 
-Yo como usuaria de lab-notes quiero editar notas para poder modificar lo que escribí antes.
+Yo como usuaria de lab-notes quiero editar notas para poder modificar lo que
+escribí antes.
 
 ***
 
