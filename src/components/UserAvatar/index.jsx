@@ -14,21 +14,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const UserAvatar = ({ user, profile, size }) => {
+const UserAvatar = ({ authUser, user, size }) => {
   const classes = useStyles();
   const className = classes[size] || '';
   const src = (
-    profile.github
-      ? `https://github.com/${profile.github}.png`
-      : user.photoURL
-        ? user.photoURL
-        : `https://www.gravatar.com/avatar/${md5(profile.email)}?s=${40}`
+    user.github
+      ? `https://github.com/${user.github}.png`
+      : authUser.photoURL
+        ? authUser.photoURL
+        : `https://www.gravatar.com/avatar/${md5(user.email)}?s=${40}`
   );
 
   return (
     !src
       ? <AccountCircleIcon className={className} />
-      : <Avatar className={className} alt={profile.name} src={src} />
+      : <Avatar className={className} alt={user.name} src={src} />
   );
 };
 

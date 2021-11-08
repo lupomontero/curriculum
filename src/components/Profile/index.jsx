@@ -9,7 +9,7 @@ const Profile = () => {
   const [user, setUser] = useState();
 
   useEffect(() => {
-    app.client(`/users/${uid}`)
+    app.user.findById(uid)
       .then(setUser)
       .catch(console.error);
   }, []);
@@ -28,4 +28,3 @@ const Profile = () => {
 };
 
 export default Profile;
-

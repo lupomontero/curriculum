@@ -4,6 +4,8 @@ const es = {
   topics: 'Tópicos',
   'learning-objectives': 'Objetivos de aprendizaje',
   signin: 'Iniciar sesión',
+  'forgot-password': '¿Olvidaste tu contraseña?',
+  password: 'Contraseña',
   signout: 'Cerrar sesión',
   learningObjectives: 'Objetivos de aprendizaje',
   webDev: 'Desarrollo Web',

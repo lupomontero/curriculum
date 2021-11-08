@@ -7,25 +7,24 @@ import './App.css';
 
 const App = () => {
   const { auth } = useApp();
+  const { user } = auth;
   const [defaulLocale, setDefaulLocale] = useState();
 
   useEffect(() => {
-    if (auth.user && !auth.profile) {
+    if (typeof user === 'undefined') {
       return;
     }
 
-
-    const profileLocale = (auth.profile || {}).locale;
     setDefaulLocale(
-      ['es-ES', 'pt-BR'].includes(profileLocale)
-        ? profileLocale
+      ['es-ES', 'pt-BR'].includes(user?.locale)
+        ? user.locale
         : navigator.language.split('-')[0] === 'pt'
           ? 'pt-BR'
           : 'es-ES'
     )
-  }, [auth]);
+  }, [user]);
 
-  if (!defaulLocale || (auth.user && !auth.profile)) {
+  if (!defaulLocale || typeof user === 'undefined') {
     return <Loading />;
   }
 

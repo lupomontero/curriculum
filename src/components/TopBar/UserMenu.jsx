@@ -33,7 +33,7 @@ const UserMenu = ({ lang, auth, history }) => {
   return (
     <div>
       <IconButton onClick={handleMenu}>
-        <UserAvatar user={auth.user} profile={auth.profile} size="small" />
+        <UserAvatar authUser={auth.authUser} user={auth.user} size="small" />
       </IconButton>
       <Menu
         anchorEl={anchorEl}
@@ -51,9 +51,9 @@ const UserMenu = ({ lang, auth, history }) => {
       >
         <MenuItem onClick={() => history.push(`/users/${auth.user.uid}`)}>
           <ListItemIcon>
-            <UserAvatar user={auth.user} profile={auth.profile} />
+            <UserAvatar authUser={auth.authUser} user={auth.user} />
           </ListItemIcon>
-          <ListItemText primary={auth.profile.name} secondary={auth.profile.email} />
+          <ListItemText primary={auth.user.name} secondary={auth.user.email} />
         </MenuItem>
         <Divider />
         <MenuItem onClick={() => auth.signOut().then(handleClose)}>

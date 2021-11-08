@@ -6,6 +6,7 @@ import Loading from '../Loading';
 // Dynamic lazy imports for code splitting based on routes.
 const Home = lazy(() => import('../Home'));
 const Topic = lazy(() => import('../Topic'));
+const Profile = lazy(() => import('../Profile'));
 const Project = lazy(() => import('../Project'));
 const SignIn = lazy(() => import('../SignIn'));
 const TopBar = lazy(() => import('../TopBar'));
@@ -28,10 +29,12 @@ const RoutesWithIntl = ({ defaultLang }) => {
       <IntlProvider lang={lang}>
         <TopBar />
         <Routes>
-          <Route path={`signin`} element={<SignIn />} />
-          <Route path={`projects/:slug`} element={<Project />} />
-          <Route path={`topics/:slug/*`} element={<Topic />} />
-          <Route path={`:track/*`} element={<Track />} />
+          <Route path="password-recovery" element={<SignIn />} />
+          <Route path="signin" element={<SignIn />} />
+          <Route path="users/:uid" element={<Profile />} />
+          <Route path="projects/:slug" element={<Project />} />
+          <Route path="topics/:slug/*" element={<Topic />} />
+          <Route path=":track/*" element={<Track />} />
           <Route path="/" element={<Home />} />
         </Routes>
       </IntlProvider>

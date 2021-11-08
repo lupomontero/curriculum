@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
@@ -20,25 +21,29 @@ const useStyles = makeStyles((theme) => ({
 const SignIn = () => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const location = useLocation();
+  const intl = useIntl();
+  const { auth } = useApp();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isSigningIn, setIsSigningIn] = useState(false);
-  const { auth } = useApp();
+  const [isSending, setIsSending] = useState(false);
+  const isPasswordRecovery = location.pathname.split('/').pop() === 'password-recovery';
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSigningIn(true);
-    auth.signIn({ email, password })
+    setIsSending(true);
+
+    auth.signIn(email, password)
       .then(() => navigate('/'))
       .catch((err) => {
         alert(err.message);
-        setIsSigningIn(false);
+        setIsSending(false);
       });
   };
 
   return (
     <Container className={classes.root}>
-      {isSigningIn
+      {isSending
         ? <Loading />
         : (
           <form onSubmit={handleSubmit}>
@@ -49,30 +54,44 @@ const SignIn = () => {
                   label="Email"
                   type="email"
                   variant="outlined"
+                  required
                   value={email}
                   onChange={e => setEmail(e.target.value)}
                 />
               </Grid>
+              {!isPasswordRecovery && (
+                <Grid item>
+                  <TextField
+                    id="password"
+                    label={intl.formatMessage({ id: 'password' })}
+                    type="password"
+                    variant="outlined"
+                    required
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
+                  />
+                </Grid>
+              )}
               <Grid item>
-                <TextField
-                  id="password"
-                  label="Password"
-                  type="password"
-                  variant="outlined"
-                  value={password}
-                  onChange={e => setPassword(e.target.value)}
-                />
+                <Button
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                  disabled={!email || (!isPasswordRecovery && !password)}
+                >
+                  <FormattedMessage id="signin" />
+                </Button>
               </Grid>
               <Grid item>
-                <Button variant="contained" color="primary" type="submit">
-                  Sign in
-                </Button>
+                <Link to="/password-recovery">
+                  <FormattedMessage id="forgot-password" />
+                </Link>
               </Grid>
             </Grid>
           </form>
         )
       }
-    </Container>
+    </Container >
   );
 };
 
