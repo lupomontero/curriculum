@@ -33,13 +33,13 @@ export const AppProvider = ({ children }) => {
   const [authUser, setAuthUser] = useState();
   const [user, setUser] = useState();
 
-
   useEffect(() => app.auth.onChange(({ authUser, user }) => {
     if (!authUser) {
       setAuthUser(null);
       setUser(null);
       return;
     }
+    console.log(user);
     setAuthUser(authUser);
     setUser(user);
   }), []);

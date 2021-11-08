@@ -79,13 +79,19 @@ const SignIn = () => {
                   type="submit"
                   disabled={!email || (!isPasswordRecovery && !password)}
                 >
-                  <FormattedMessage id="signin" />
+                  <FormattedMessage
+                    id={isPasswordRecovery ? 'recover-password' : 'signin'}
+                  />
                 </Button>
               </Grid>
               <Grid item>
-                <Link to="/password-recovery">
-                  <FormattedMessage id="forgot-password" />
-                </Link>
+                {isPasswordRecovery
+                  ? <Link to="/signin">
+                    <FormattedMessage id="signin" />
+                  </Link>
+                  : <Link to="/password-recovery">
+                    <FormattedMessage id="forgot-password" />
+                  </Link>}
               </Grid>
             </Grid>
           </form>

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
@@ -16,7 +17,12 @@ const UserMenu = ({ lang, auth, history }) => {
 
   if (!auth.user) {
     return (
-      <Button onClick={() => history.push(`/${lang}/signin`)} color="primary" variant="contained">
+      <Button
+        component={Link}
+        to={`/${lang}/signin`}
+        color="primary"
+        variant="contained"
+      >
         <FormattedMessage id="signin" />
       </Button>
     );
@@ -36,6 +42,14 @@ const UserMenu = ({ lang, auth, history }) => {
         <UserAvatar authUser={auth.authUser} user={auth.user} size="small" />
       </IconButton>
       <Menu
+        sx={{
+          '& .MuiAvatar-root': {
+            width: 32,
+            height: 32,
+            ml: -0.5,
+            mr: 1,
+          },
+        }}
         anchorEl={anchorEl}
         open={!!anchorEl}
         onClose={handleClose}
@@ -49,7 +63,7 @@ const UserMenu = ({ lang, auth, history }) => {
           horizontal: 'right',
         }}
       >
-        <MenuItem onClick={() => history.push(`/users/${auth.user.uid}`)}>
+        <MenuItem component={Link} to={`/users/${auth.user.uid}`}>
           <ListItemIcon>
             <UserAvatar authUser={auth.authUser} user={auth.user} />
           </ListItemIcon>

@@ -5,6 +5,7 @@ const es = {
   'learning-objectives': 'Objetivos de aprendizaje',
   signin: 'Iniciar sesión',
   'forgot-password': '¿Olvidaste tu contraseña?',
+  'recover-password': 'Restaurar contraseña',
   password: 'Contraseña',
   signout: 'Cerrar sesión',
   learningObjectives: 'Objetivos de aprendizaje',
