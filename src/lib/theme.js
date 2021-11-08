@@ -1,6 +1,6 @@
 const theme = {
   typography: {
-    // fontSize: 13,
+    //   // fontSize: 13,
     fontFamily: [
       '"Open Sans"',
       '-apple-system',
@@ -14,12 +14,12 @@ const theme = {
       '"Droid Sans"',
       '"Helvetica Neue"',
       'sans-serif',
-    ],
+    ].join(','),
     h1: {
       fontFamily: 'Bitter',
-      fontSize: '2rem',
+      fontSize: '1.8rem',
       fontWeight: 'bold',
-      marginTop: 30,
+      marginTop: 20,
       marginBottom: 20,
     },
     h2: {
@@ -27,25 +27,15 @@ const theme = {
       fontSize: '1.5rem',
       fontWeight: 'bold',
       marginTop: 20,
-      marginBottom: 20,
     },
     h3: {
       fontFamily: 'Bitter',
       fontSize: '1.4rem',
       fontWeight: 'bold',
-      marginTop: 15,
-      marginBottom: 15,
     },
     h4: {
       fontFamily: 'Bitter',
       fontSize: '1.2rem',
-      fontWeight: 'bold',
-      marginTop: 10,
-      marginBottom: 10,
-    },
-    h5: {
-      fontFamily: 'Bitter',
-      fontSize: '1rem',
       fontWeight: 'bold',
       marginTop: 10,
       marginBottom: 10,
@@ -55,7 +45,7 @@ const theme = {
     },
   },
   palette: {
-    type: 'light',
+    // mode: 'light',
     primary: {
       light: '#ffea4d',
       main: '#ffe521',
@@ -77,20 +67,24 @@ const theme = {
       dark: '#000',
     },
     background: {
-      // default: '#f0f0f0',
-      // paper: '#fff',
+      default: '#f0f0f0',
+      paper: '#fff',
     },
   },
-  overrides: {
+  components: {
     MuiInputBase: {
-      root: {
-        backgroundColor: '#fff',
+      styleOverrides: {
+        root: {
+          backgroundColor: '#fff',
+        },
       },
     },
     MuiButton: {
-      label: {
-        textTransform: 'uppercase',
-        fontWeight: 'bold',
+      styleOverrides: {
+        root: {
+          textTransform: 'uppercase',
+          fontWeight: 'bold',
+        },
       },
     },
   },

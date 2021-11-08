@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
-import Button from '@material-ui/core/Button';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import LockOpenIcon from '@material-ui/icons/LockOpen';
+import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
 import UserAvatar from '../UserAvatar';
 
 
@@ -32,7 +32,7 @@ const UserMenu = ({ lang, auth, history }) => {
 
   return (
     <div>
-      <IconButton onClick={handleMenu}>
+      <IconButton onClick={handleMenu} size="large">
         <UserAvatar authUser={auth.authUser} user={auth.user} size="small" />
       </IconButton>
       <Menu

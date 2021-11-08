@@ -1,11 +1,11 @@
 import { Link, useParams } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import Grid from '@material-ui/core/Grid';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import ArrowForward from '@material-ui/icons/ArrowForward';
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import Grid from '@mui/material/Grid';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import ArrowForward from '@mui/icons-material/ArrowForward';
 import { useLocale } from '../../intl/IntlProvider';
 
 const Topic = ({ topic }) => {
@@ -14,7 +14,7 @@ const Topic = ({ topic }) => {
     <Card>
       <CardHeader
         action={
-          <IconButton component={Link} to={`/${lang}/topics/${topic.slug}`}>
+          <IconButton component={Link} to={`/${lang}/topics/${topic.slug}`} size="large">
             <ArrowForward />
           </IconButton>
         }
