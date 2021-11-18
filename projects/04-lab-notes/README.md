@@ -7,8 +7,9 @@
 * [3. Objetivos de Aprendizaje](#3-objetivos-de-aprendizaje)
 * [4. Consideraciones generales](#4-consideraciones-generales)
 * [5. Criterios de aceptación mínimos del proyecto](#5-criterios-de-aceptación-mínimos-del-proyecto)
-* [6. Hacker Edition](#6-hacker-edition)
-* [7. Pistas, tips y lecturas complementarias](#7-pistas-tips-y-lecturas-complementarias)
+* [6. Consideraciones técnicas](#6-consideraciones-técnicas)
+* [7. Hacker Edition](#7-hacker-edition)
+* [8. Pistas, tips y lecturas complementarias](#8-pistas-tips-y-lecturas-complementarias)
 
 ***
 
@@ -36,8 +37,6 @@ Como desarrolladora front-end, estos kits de desarrollo pueden resultarte
 de gran ayuda para implementar rápidamente características de los proyectos en
 los que trabajes.
 
-## 2. Resumen del Proyecto
-
 No existe día que no tomemos notas, siempre necesitamos apuntar alguna
 dirección, número telefónico, notas de alguna reunión o guardar nuestras URLs
 favoritas para poder consultarlas más tarde. Muchas veces para esta actividad
@@ -54,10 +53,20 @@ una web app para tomar notas,
 que nos permita crear, editar, eliminar y consultar las notas en cualquier
 momento.
 
+## 2. Resumen del Proyecto
+
 Ella está enamorada de la idea y quiere llevarla a cabo, pero no tiene el tiempo
 necesario para empezar el proyecto, planea que sea un proyecto independiente a
 su trabajo, por ello está buscando algunas colaboradoras dentro de la comunidad
 de Laboratoria para implementar la idea, por lo cual te invitamos a colaborar.
+
+El objetivo principal de este proyecto es aprender a construir una _interfaz
+web_ usando el _framework_ elegido. Todos estos frameworks de Frontend atacan el
+mismo problema: **cómo mantener la interfaz y el estado sincronizados**. Así que
+esta experiencia espera familiarizarte con el concepto de _estado de pantalla_,
+y cómo cada cambio sobre el estado se va a ir reflejando en la interfaz (por
+ejemplo, cada vez que agregamos una _nota_, la interfaz debe actualizar la lista
+de notas).
 
 ![Shows CRUD functionalities](https://raw.githubusercontent.com/florenciasilva/lab-notes/master/demo-crud.gif?token=AGJBHNTVAQRWOVF2IGMP6FK5NVFAS)
 
@@ -80,104 +89,15 @@ pantalla. Para ello necesitaremos investigar acerca de _la API para el manejo de
 rutas (en la librería o framework que elijas)_ y el concepto de _Single Page
 Application_.
 
-### Archivos del proyecto
-
-El proyecto deberá contener los siguientes archivos base de configuración,
-aunque no serán los únicos archivos que quizás tendrás que crear.
-
-* `README.md` es donde se encontrará la descripción del proyecto y elementos
-  relevantes de tu proyecto.
-* `.editorconfig` este archivo contiene la configuración para editores de texto.
-* `.gitignore`  este archivo contiene reglas para ignorar `node_modules` u otras
-  carpetas que no deban incluirse en control de versiones (`git`).
-* `.eslintrc` este archivo contiene reglas para formatear el código además de
-  ser una buena practica tener configurado un linter.
-
 ## 3. Objetivos de Aprendizaje
 
-El objetivo principal de es aprender a construir una _interfaz web_ usando
-el _framework_ elegido. Todos estos frameworks de Frontend atacan el mismo
-problema: **cómo mantener la interfaz y el estado sincronizados**. Así que esta
-experiencia espera familiarizarte con el concepto de _estado de pantalla_, y
-cómo cada cambio sobre el estado se va a ir reflejando en la interfaz (por
-ejemplo, cada vez que agregamos una _nota_, la interfaz debe actualizar la lista
-de notas).
-
-![frameworks-img](https://miro.medium.com/max/700/1*paPkmhDhXifPg-64om52og.jpeg)
-
-### HTML y CSS
-
-* [ ] HTML semántico
-* [ ] CSS flexbox
-* [ ] Maquetación
-
-### Frontend Development
-
-* [ ] Componentes
-* [ ] Manejo de estado
-
-### React
-
-* [ ] ¿Qué es React?
-* [ ] Virtual DOM
-* [ ] ReactDOM rendering
-* [ ] [`¿Qué es un componente de React?`](https://es.reactjs.org/docs/components-and-props.html)
-* [ ] [`JSX`](https://es.reactjs.org/docs/introducing-jsx.html)
-* [ ] Props
-* [ ] Renderizado condicional (?)
-* [ ] State(ej: `this.state`, `useState`,`context`, `redux`, ...)
-* [ ] [`Manejo de eventos`](https://es.reactjs.org/docs/handling-events.html)
-* [ ] Refs
-* [ ] [`Component Lifecycle`](https://es.reactjs.org/docs/hooks-effect.html)
-* [ ] [`React Router`](https://reacttraining.com/react-router/web)
-
-### Angular
-
-* [ ] [`Uso de Components | Templates`](https://angular.io/guide/architecture-components#introduction-to-components)
-* [ ] [`Directivas estructurales (ngIf / ngFor)`](https://angular.io/guide/template-syntax#built-in-structural-directives)
-* [ ] [`@Input | @Ouput`](https://angular.io/guide/component-interaction#component-interaction)
-* [ ] [`Creación y uso de servicios`](https://angular.io/guide/architecture-services#providing-services)
-* [ ] [`Manejos de rutas`](https://angular.io/guide/router)
-* [ ] [`Uso de Observables`](https://angular.io/guide/observables-in-angular)
-* [ ] [`Uso de HttpClient`](https://angular.io/guide/http)
-* [ ] [`Estilos de componentes (ngStyle / ngClass)`](https://angular.io/guide/template-syntax#built-in-directives)
-
-### Vue
-
-* [ ] [`Instancia de Vue.js`](https://es.vuejs.org/v2/guide/instance.html)
-* [ ] [`Datos y métodos`](https://es.vuejs.org/v2/guide/instance.html#Datos-y-Metodos)
-* [ ] [`Uso y creación de Componentes`](https://vuejs.org/v2/guide/components.html)
-* [ ] [`Props`](https://es.vuejs.org/v2/guide/components.html#Pasando-datos-a-componentes-secundarios-con-Props)
-* [ ] Directivas ([v-bind](https://es.vuejs.org/v2/api/#v-bind) | [v-model](https://es.vuejs.org/v2/guide/forms.html))
-* [ ] Renderizado condicional ([v-if](https://es.vuejs.org/v2/guide/conditional.html#v-if)
-      | [v-else](https://es.vuejs.org/v2/guide/conditional.html#v-else))
-* [ ] Iteraciones ([v-for](https://es.vuejs.org/v2/guide/list.html#Mapeando-una-matriz-a-elementos-con-v-for))
-* [ ] Eventos ([v-on](https://es.vuejs.org/v2/guide/events.html))
-* [ ] [`Propiedades Computadas y Observadores`](https://es.vuejs.org/v2/guide/computed.html)
-* [ ] [`Router`](https://router.vuejs.org/guide/#html)
-* [ ] [`Clases y Estilos`](https://es.vuejs.org/v2/guide/class-and-style.html)
-* [ ] [`Gestión de Estado`](https://es.vuejs.org/v2/guide/state-management.html#Gestion-de-estado-simple-desde-cero)
-
-### Firebase
-
-* [ ] [`Firestore`](https://firebase.google.com/docs/firestore?hl=es)
-* [ ] [`Firebase Auth`](https://firebase.google.com/docs/auth?hl=es)
-* [ ] [`Firebase security rules`](https://firebase.google.com/docs/firestore/security/get-started)
-* [ ] [`onSnapshot`](https://firebase.google.com/docs/firestore/query-data/listen)
-* [ ] [`onAuthStateChanged`](https://firebase.google.com/docs/auth/web/manage-users?hl=es)
-
-### Testing
-
-* [ ] Testeo de tus interfaces
-* [ ] Testeo de componentes
-* [ ] Testeo asíncrono
-* [ ] Mocking
-
-### Buenas prácticas de desarrollo
-
-* [ ] Modularización
-* [ ] Nomenclatura / Semántica
-* [ ] Linting
+> ℹ️ Esta sección será automáticamente generada en el idioma pertinente, a partir
+> de los objetivos de aprendizaje declarados en [`project.yml`](./project.yml),
+> al crear el repo del proyecto para un cohort en particular usando
+> [`./scripts/create-cohort-project.js`](../../scripts#create-cohort-project-coaches).
+>
+> Acá puedes ver una [lista de todos los objetivos de aprendizaje](../../learning-objectives/data.yml)
+> que contempla nuestra currícula.
 
 ## 4. Consideraciones generales
 
@@ -255,9 +175,20 @@ Lo acordado que debe ocurrir para decir que la historia está terminada.
 * Haces _test_ unitarios y, además, has testeado tu producto manualmente.
 * Desplegaste tu aplicación y has etiquetado tu versión ([`git tag`](https://youtu.be/5DkX3HFgklM)).
 
-***
+## 6. Consideraciones técnicas
 
-## 6. Hacker Edition
+El proyecto deberá contener los siguientes archivos base de configuración,
+aunque no serán los únicos archivos que quizás tendrás que crear.
+
+* `README.md` es donde se encontrará la descripción del proyecto y elementos
+  relevantes de tu proyecto.
+* `.editorconfig` este archivo contiene la configuración para editores de texto.
+* `.gitignore`  este archivo contiene reglas para ignorar `node_modules` u otras
+  carpetas que no deban incluirse en control de versiones (`git`).
+* `.eslintrc` este archivo contiene reglas para formatear el código además de
+  ser una buena practica tener configurado un linter.
+
+## 7. Hacker Edition
 
 Una vez que hayas terminado las funcionalidades base del proyecto, puedes
 pasarte a esta sección.
@@ -273,7 +204,7 @@ pasarte a esta sección.
 * Guardar el color de la nota.
 * Crear una nota como publica.
 
-## 7. Pistas, tips y lecturas complementarias
+## 8. Pistas, tips y lecturas complementarias
 
 ### Frameworks / libraries
 
