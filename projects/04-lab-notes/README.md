@@ -61,8 +61,8 @@ de Laboratoria para implementar la idea, por lo cual te invitamos a colaborar.
 
 ![Shows CRUD functionalities](https://raw.githubusercontent.com/florenciasilva/lab-notes/master/demo-crud.gif?token=AGJBHNTVAQRWOVF2IGMP6FK5NVFAS)
 
-Para este proyecto necesitas crear una Web App con `cualquier librería o
-framework de JavaScript` y `Firebase`.
+Para este proyecto necesitas crear una Web App con **cualquier librería o
+framework de JavaScript** y **Firebase**.
 
 Si bien la temática es libre, tu aplicación tendrá que tener ciertas
 funcionalidades básicas:
@@ -91,7 +91,7 @@ aunque no serán los únicos archivos que quizás tendrás que crear.
 * `.gitignore`  este archivo contiene reglas para ignorar `node_modules` u otras
   carpetas que no deban incluirse en control de versiones (`git`).
 * `.eslintrc` este archivo contiene reglas para formatear el código además de
-ser una buena practica tener configurado un linter.
+  ser una buena practica tener configurado un linter.
 
 ## 3. Objetivos de Aprendizaje
 
@@ -183,8 +183,8 @@ de notas).
 
 * Este proyecto se debe "resolver" de forma individual.
 
-* La duración propuesta del proyecto es 4 sprints, con una duración de una
-semana cada uno.
+* La duración estimada del proyecto es de 4 sprints, con una duración de una
+  semana cada uno.
 
 * Trabaja en una historia hasta terminarla antes de pasar a la siguiente.
 
@@ -207,7 +207,7 @@ que es el resultado de su trabajo colaborativo.
 
 ***
 
-#### [Historia de usuario 1] Usuaria/o debería poder tomar nota
+#### [Historia de usuaria 1] Debería poder tomar nota
 
 Yo como usuaria de lab-notes quiero tomar nota para no depender de mi mala
 memoria y tener presente en todo momento los apuntes ó cosas importantes que
@@ -215,21 +215,21 @@ antes escribía en papel.
 
 ***
 
-#### [Historia de usuario 2] Usuaria/o debería poder ver las notas
+#### [Historia de usuaria 2] Debería poder ver las notas
 
 Yo como usuaria de lab-notes quiero leer mis notas para recordar lo que escribí
 antes.
 
 ***
 
-#### [Historia de usuario 3] Usuaria/o debería poder editar las notas
+#### [Historia de usuaria 3] Debería poder editar las notas
 
 Yo como usuaria de lab-notes quiero editar notas para poder modificar lo que
 escribí antes.
 
 ***
 
-#### [Historia de usuario 4] Usuaria/o debería poder borrar notas
+#### [Historia de usuaria 4] Debería poder borrar notas
 
 Yo como usuaria de lab-notes quiero borrar una nota para no volver a verla.
 
@@ -263,8 +263,8 @@ Una vez que hayas terminado las funcionalidades base del proyecto, puedes
 pasarte a esta sección.
 
 * Si la usuaria empieza a escribir una nota y por alguna razón la pestaña del
-navegador se cierra, cuando la vuelva a abrir, la nota debería mostrarse como
-estaba.
+  navegador se cierra, cuando la vuelva a abrir, la nota debería mostrarse como
+  estaba.
 * Subir imágenes.
 * Ver el número de veces que he editado mi nota.
 * Consumo de API/s (Google Maps, Spotify, Pinterest, etc.)
