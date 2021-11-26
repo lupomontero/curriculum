@@ -12,10 +12,10 @@ import LockOpenIcon from '@mui/icons-material/LockOpen';
 import UserAvatar from '../UserAvatar';
 
 
-const UserMenu = ({ lang, auth, history }) => {
+const UserMenu = ({ lang, auth }) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
-  if (!auth.user) {
+  if (!auth.authUser || !auth.user) {
     return (
       <Button
         component={Link}

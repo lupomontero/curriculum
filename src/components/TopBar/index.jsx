@@ -98,7 +98,7 @@ const TopBar = () => {
               </MenuItem>
             </Select>
           </FormControl>
-          <UserMenu lang={lang} auth={auth} history={history} />
+          <UserMenu lang={lang} auth={auth} />
         </Toolbar>
       </AppBar>
 

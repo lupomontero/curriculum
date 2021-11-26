@@ -17,7 +17,8 @@
     "prebuild": "npm run build:content",
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll=false",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "link-sdk": "rm -rf node_modules/@laboratoria/sdk-js && ln -s ../../@laboratoria/sdk-js node_modules/@laboratoria/"
   },
   "repository": "Laboratoria/bootcamp",
   "keywords": [

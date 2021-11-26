@@ -79,37 +79,37 @@ const Track = () => {
         />
         <Tab
           label={intl.formatMessage({ id: 'learning-objectives' })}
-          value={`${url}/learning-objectives`}
+          value={`${pathnameBase}/learning-objectives`}
           component={Link}
-          to={`${url}/learning-objectives`}
+          to="learning-objectives"
         />
         <Tab
           label={intl.formatMessage({ id: 'topics' })}
           value={`${pathnameBase}/topics`}
           component={Link}
-          to={`topics`}
+          to="topics"
         />
         {track === 'js' && (
           <Tab
             label={intl.formatMessage({ id: 'gym' })}
             value={`${pathnameBase}/gym`}
             component={Link}
-            to={`gym`}
+            to="gym"
           />
         )}
       </Tabs>
       <Routes>
         <Route
-          path={`topics`}
+          path="topics"
           element={<Topics topics={topics} track={track} />}
         />
         <Route
-          path={`${path}/learning-objectives`}
-          render={() => <LearningObjectives learningObjectives={learningObjectives} />}
+          path="learning-objectives"
+          element={<LearningObjectives learningObjectives={learningObjectives} />}
         />
         {track === 'js' && (
           <Route
-            path={`gym`}
+            path="gym"
             element={<Gym topics={topics} track={track} lang={lang} intl={intl} />}
           />
         )}
